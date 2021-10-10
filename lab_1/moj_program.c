@@ -1,34 +1,38 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<time.h>
- 
-const int liczba = 100000;
+#include "../pomiar_czasu/pomiar_czasu.h"
 
-main(){
+int liczba = 100000;
 
-  double a, b, c;
-  int i,j,k,l;
+main() {
 
-  k = -50000;
-  for(i=0;i<liczba;i++){
+    double a, b, c;
+    int i, j, k, l;
 
-    printf("%d ",k+i);
+    inicjuj_czas();
+    k = -50000;
+    for (i = 0; i < liczba; i++) {
+        printf("%d ", k + i);
+    }
+    printf("\n");
+    printf("Czas wykonania %d operacji wejscia/wyjscia: \n", liczba);
+    drukuj_czas();
 
-  }
-  printf("\n");
+    liczba *= 100;
+    double t1 = czas_zegara();
+    double t2 = czas_CPU();
+    a = 1.000001;
+    for (i = 0; i < liczba; i++) {
+        a = 1.000001 * a + 0.000001;
+    }
+    t1 = czas_zegara() - t1;
+    t2 = czas_CPU() - t2;
 
-  printf("Czas wykonania %d operacji wejscia/wyjscia: \n",liczba);
+    printf("Wynik operacji arytmetycznych: %lf\n", a);
+    printf("Czas wykonania %d operacji arytmetycznych: \n", liczba);
 
-
-  a = 1.000001;
-  for(i=0;i<liczba;i++){
-
-    a = 1.000001*a+0.000001; 
-
-  }
-
-  printf("Wynik operacji arytmetycznych: %lf\n", a);
-  printf("Czas wykonania %d operacji arytmetycznych: \n",liczba);
-
+    printf("czas CPU         = %lf\n", t2);
+    printf("czas zegarowy    = %lf\n", t1);
 
 }
