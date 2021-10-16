@@ -13,15 +13,13 @@ int zmienna_globalna = 0;
 #define ROZMIAR_STOSU 1024*64
 
 int funkcja_watku(void *argument) {
-
-    for(int i=0 ; i < 10000000 ; i++)
+    int zmienna_lokalna = 0;
+    for(int i=0 ; i < 10000000 ; i++) {
+        zmienna_lokalna++;
         zmienna_globalna++;
-    printf("Wartosc zmiennej w watku: %d\n", zmienna_globalna);
-    /* int wynik; */
-    /* wynik=execv("./program",NULL); */
-    /* if(wynik==-1) */
-    /*   printf("Proces potomny nie wykonal programu\n"); */
-
+    }
+    printf("Wartosc zmiennej globalnej w watku: %d\n", zmienna_globalna);
+    printf("Wartosc zmiennej lokalnej w watku: %d\n", zmienna_lokalna);
     return 0;
 }
 
