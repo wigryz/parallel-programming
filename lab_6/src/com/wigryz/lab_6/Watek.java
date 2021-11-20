@@ -12,7 +12,6 @@ public class Watek extends Thread {
 
     @Override
     public void run() {
-        System.out.println("Stworzony watek: " + numOfChar);
         obraz.calculateHistogramOf(numOfChar);
         obraz.printHistogramOf(numOfChar);
     }
