@@ -19,8 +19,6 @@ class HistogramTest {
         obraz_1.calculate_histogram();
         obraz_1.print_histogram();
 
-//        obraz_1.clear_histogram();
-
         System.out.println("Set number of threads");
         int num_threads = scanner.nextInt();
 //
@@ -36,19 +34,21 @@ class HistogramTest {
 //            } catch (InterruptedException e) {
 //            }
 //        }
-
+//
 //        System.out.println("Czy oba histogramy sie zgadzaja? " + obraz_1.checkBothHistograms());
-
-
-        System.out.println("\n------------------------------------------\n");
-        System.out.println("DEKOMPOZYCJA HISTOGRAM\n");
+//
+//
+//        System.out.println("\n------------------------------------------\n");
+//        System.out.println("DEKOMPOZYCJA HISTOGRAM\n");
 
 
         Thread[] DecThr = new Thread[num_threads];
 
+        int charsForThread = (int) Math.ceil((double)NUMBER_OF_CHARS/num_threads);
+
         for (int i = 0; i < num_threads; i++) {
-            int start = NUMBER_OF_CHARS/num_threads * i;
-            int end = NUMBER_OF_CHARS/num_threads * (i + 1);
+            int start = i * charsForThread;
+            int end = Math.min(((i + 1) * charsForThread), NUMBER_OF_CHARS);
             (DecThr[i] = new Thread(new WatekDec(start, end, obraz_1))).start();
         }
 

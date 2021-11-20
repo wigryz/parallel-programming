@@ -83,7 +83,9 @@ class Obraz {
     }
 
     public synchronized void printHistogramOf(int numOfChar) {
-        System.out.print("Watek [" + numOfChar + "]: " + tab_symb[numOfChar] + " " + parallel_histogram[numOfChar] + " ");
+        System.out.print("Watek [" + numOfChar + "]: "
+                         + tab_symb[numOfChar] + " "
+                         + parallel_histogram[numOfChar] + " ");
         for (int i = 0; i < parallel_histogram[numOfChar]; i++) {
             System.out.print("=");
         }
@@ -116,15 +118,9 @@ class Obraz {
     }
 
     public void calculateHistogramBetween(int start, int end) {
-        int localHistogram[] = new int[end - start];
-
-        if(start == 4)
-            System.out.println("x");
-
         for (int i = 0; i < size_n; i++) {
             for (int j = 0; j < size_m; j++) {
                 for (int k = start; k < end; k++) {
-//                    if (tab[i][j] == tab_symb[k]) localHistogram[k - start]++;
                     if (tab[i][j] == tab_symb[k]) dec_histogram[k]++;
                 }
             }
@@ -133,7 +129,9 @@ class Obraz {
 
     public synchronized void printHistogramBetween(int start, int end) {
         for(int k=start ; k < end ; k++) {
-            System.out.print("Watek [" + Thread.currentThread().getName() + "]: " + tab_symb[k] + " " + dec_histogram[k] + " ");
+            System.out.print("Watek [" + Thread.currentThread().getName() + "]: "
+                             + tab_symb[k] + " "
+                             + dec_histogram[k] + " ");
             for (int i = 0; i < dec_histogram[k]; i++) {
                 System.out.print("=");
             }
