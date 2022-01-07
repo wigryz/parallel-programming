@@ -1,11 +1,11 @@
 # kompilator c
-CCOMP = /usr/bin/mpicc
+CCOMP = /usr/lib64/openmpi/bin/mpicc
 
 # konsolidator
-LOADER = /usr/bin/mpicc
+LOADER = /usr/lib64/openmpi/bin/mpicc
 
 # program uruchomieniowy MPI
-MPI_run = /usr/bin/mpiexec
+MPI_run = /usr/lib64/openmpi/bin/mpiexec
 
 # opcje optymalizacji:
 # wersja do debugowania

@@ -5,7 +5,7 @@ CCOMP = /usr/lib64/openmpi/bin/mpicc
 LOADER = /usr/lib64/openmpi/bin/mpicc
 
 # program uruchomieniowy MPI
-MPI_run = /usr/lib64/openmpi/bin/mpiexec -oversubscribe
+MPI_run = /usr/lib64/openmpi/bin/mpiexec
 
 # opcje optymalizacji:
 # wersja do debugowania
@@ -19,18 +19,18 @@ OPT = -g -DDEBUG
 # biblioteki
 #LIB = -L../pomiar_czasu -lm
 
-all: MPI_simple run 
+all: struktura run 
 
-run: MPI_simple
-	$(MPI_run) -np 4 MPI_simple
+run: struktura
+	$(MPI_run) -np 50 ./struktura
 
 # zaleznosci i komendy
-MPI_simple : MPI_simple.o
-	$(LOADER) $(OPT) MPI_simple.o -o MPI_simple $(LIB)
+struktura : struktura.o
+	$(LOADER) $(OPT) struktura.o -o struktura $(LIB)
 
 # jak uzyskac plik moj_program.o ?
-MPI_simple.o: MPI_simple.c 
-	$(CCOMP) -c $(OPT) MPI_simple.c
+struktura.o: struktura.c 
+	$(CCOMP) -c $(OPT) struktura.c
 
 clean:
-	rm -f *.o MPI_simple
+	rm -f *.o struktura
