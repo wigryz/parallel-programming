@@ -22,7 +22,7 @@ OPT = -g -DDEBUG
 all: struktura run 
 
 run: struktura
-	$(MPI_run) -np 50 ./struktura
+	$(MPI_run) -np 4 ./struktura
 
 # zaleznosci i komendy
 struktura : struktura.o
