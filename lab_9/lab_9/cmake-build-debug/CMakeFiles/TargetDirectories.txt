@@ -1,0 +1,3 @@
+/home/wigryz/programming/studies/parallel-programming/lab_9/lab_9/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/wigryz/programming/studies/parallel-programming/lab_9/lab_9/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/wigryz/programming/studies/parallel-programming/lab_9/lab_9/cmake-build-debug/CMakeFiles/lab_9.dir

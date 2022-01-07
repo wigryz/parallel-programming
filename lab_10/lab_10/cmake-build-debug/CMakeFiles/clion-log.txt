@@ -1,0 +1,1 @@
+CMakeLists.txt not found in /home/wigryz/programming/studies/parallel-programming/lab_10/lab_10 Select CMakeLists.txt

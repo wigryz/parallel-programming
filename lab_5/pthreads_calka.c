@@ -155,17 +155,20 @@ void *calka_fragment_petli_w(void *arg_wsk) {
     N = N_global;
     l_w = l_w_global;
 
-    int el_na_watek = ceil((float) N / l_w_global);
 
     // dekompozycja cykliczna
-    int my_start = my_id;
-    int my_end = N;
-    int my_stride = l_w;
+//    int my_start = my_id;
+//    int my_end = N;
+//    int my_stride = l_w;
 
-    // dekompozycja blokowa
-//    int my_start = el_na_watek * my_id;
-//    int my_end = el_na_watek * (my_id + 1);
-//    int my_stride = 1;
+//dekompozycja blokowa
+    int el_na_watek = ceil((float) N / l_w_global);
+    int my_start = el_na_watek * my_id;
+    int my_end = el_na_watek * (my_id + 1);
+
+    if (my_end > N) my_end = N;
+
+    int my_stride = 1;
 
     // something else ? (dekompozycja blokowo-cykliczna)
 
@@ -184,7 +187,8 @@ void *calka_fragment_petli_w(void *arg_wsk) {
 
     }
 
-    while (pthread_mutex_trylock(&muteks)) {}
+    //while (pthread_mutex_trylock(&muteks)) {}
+    pthread_mutex_lock(&muteks);
     calka_global += calka;
     pthread_mutex_unlock(&muteks);
 }

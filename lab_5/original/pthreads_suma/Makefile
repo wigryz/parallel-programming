@@ -18,20 +18,12 @@ INC = -I./include
 LIB = -L./lib -lpomiar_czasu -lm -lpthread
 
 # zaleznosci i komendy
-
-#all: pthreads_suma pthreads_calka
-all: pthreads_calka
-
 pthreads_suma: pthreads_suma.o 
 	$(LOADER) $(OPT) pthreads_suma.o -o pthreads_suma $(LIB)
 
+# jak uzyskac plik pthreads_suma.o 
 pthreads_suma.o: pthreads_suma.c include/pomiar_czasu.h
 	$(CCOMP) -c $(OPT) pthreads_suma.c $(INC) 
 
-pthreads_calka: pthreads_calka.o 
-	$(LOADER) $(OPT) pthreads_calka.o -o pthreads_calka $(LIB)
-
-pthreads_calka.o: pthreads_calka.c include/pomiar_czasu.h
-	$(CCOMP) -c $(OPT) pthreads_calka.c $(INC)
 clean:
-	rm -f *.o pthreads_calka pthreads_suma
+	rm -f *.o pthreads_suma
