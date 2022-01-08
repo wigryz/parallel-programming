@@ -6,7 +6,7 @@
 #include"pomiar_czasu.h"
 
 #define ROZMIAR 1000000000
-#define LICZBA_W 2 // lepiej: stała - LICZBA_W_MAX i parametr p - liczba wątków 
+#define LICZBA_W 4 // lepiej: stała - LICZBA_W_MAX i parametr p - liczba wątków
 
 // SENS JEST JEDYNIE GDY MAMY DUZA LICZBE OBLICZEN
 // DLA 1000 SEKWENCYJNIE JEST LEPIEJ
@@ -36,6 +36,8 @@ int main(int argc, char *argv[]) {
     tab = (double *) malloc(ROZMIAR * sizeof(double));
     for (i = 0; i < ROZMIAR; i++) tab[i] = ((double) i + 1) / ROZMIAR;
 
+    printf("Liczba watkow: %d\n", LICZBA_W);
+    printf("Rozmiar: %d\n", ROZMIAR);
     printf("Obliczenia sekwencyjne\n");
     t1 = czas_zegara();
     for (i = 0; i < ROZMIAR; i++) {

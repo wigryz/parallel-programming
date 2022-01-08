@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     struct record rekord;
     rekord.scalar = 5.0;
     rekord.number = 10;
-    strncpy(rekord.name, "hello", 8);
+    strncpy(rekord.name, "tomasz", 8);
 
     int aux = 0;
     MPI_Pack_size(1, MPI_DOUBLE, MPI_COMM_WORLD, &aux);
@@ -69,11 +69,9 @@ int main(int argc, char **argv)
             MPI_Unpack(buffor, packet_size, &pos, &recv.name, 8, MPI_CHAR, MPI_COMM_WORLD);
 
             printf("Proces %d - odebral strukture: %lf, %d, %s\n", rank, recv.scalar, recv.number, recv.name);
-
             //EDYCJA
             recv.scalar += 0.1;
             recv.number += 1;
-
             //PAKOWANIE
             pos = 0;
             MPI_Pack(&recv.scalar, 1, MPI_DOUBLE, buffor, packet_size, &pos, MPI_COMM_WORLD);
