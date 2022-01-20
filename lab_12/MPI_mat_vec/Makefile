@@ -4,7 +4,7 @@ CCOMP = /usr/lib64/openmpi/bin/mpicc
 # konsolidator
 LOADER = /usr/lib64/openmpi/bin/mpicc
 
-MPIRUN = /usr/lib64/openmpi/bin/mpiexec 
+MPIRUN = /usr/lib64/openmpi/bin/mpiexec
 
 # opcje optymalizacji:
 # wersja do debugowania
@@ -25,7 +25,7 @@ LIB =  -lm
 #LIB = -L/opt/intel/mkl/10.1.0.015/lib/em64t/ -lmkl -liomp5 -lpthread
 
 # zaleznosci i komendy
-all: mat_vec_row_MPI run
+all: clean mat_vec_row_MPI run
 
 #mat_vec_row_MPI: mat_vec_row_MPI.o mat_vec.o pomiar_czasu.o
 #	$(LOADER) $(OPT) mat_vec_row_MPI.o mat_vec.o pomiar_czasu.o -o mat_vec_row_MPI $(LIB)
@@ -43,7 +43,7 @@ mat_vec_row_MPI.o: mat_vec_row_MPI.c
 #	$(CCOMP) -c $(OPT) pomiar_czasu.c
 
 run:
-	$(MPIRUN) -np 4 --oversubscribe  ./mat_vec_row_MPI
+	$(MPIRUN) -np 4  ./mat_vec_row_MPI
 
 clean:
 	rm -f *.o ./mat_vec_row_MPI

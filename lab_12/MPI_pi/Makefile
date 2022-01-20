@@ -1,26 +1,36 @@
 # kompilator c
-CCOMP = /usr/lib64/openmpi/bin/mpicc
+CCOMP = /usr/bin/mpicc
 
 # konsolidator
-LOADER = /usr/lib64/openmpi/bin/mpicc
+LOADER = /usr/bin/mpicc
 
-MPIRUN = /usr/lib64/openmpi/bin/mpiexec 
+# program uruchomieniowy MPI
+MPI_run = /usr/bin/mpiexec
 
-OPT = -O2 -fopenmp
+# opcje optymalizacji:
+# wersja do debugowania
+OPT = -g -DDEBUG
+# wersja zoptymalizowana do mierzenia czasu
+# OPT = -O3
 
-LIB =  -lm
+# pliki naglowkowe
+#INC = -I../pomiar_czasu
+
+# biblioteki
+#LIB = -L../pomiar_czasu -lm
+
+all: oblicz_PI run
+
+run: oblicz_PI
+	$(MPI_run) -np 4 ./oblicz_PI
 
 # zaleznosci i komendy
-all: mat_vec_row_MPI run
-
-mat_vec_row_MPI: oblicz_PI.o
+oblicz_PI : oblicz_PI.o
 	$(LOADER) $(OPT) oblicz_PI.o -o oblicz_PI $(LIB)
 
-mat_vec_row_MPI.o: oblicz_PI.c
-	$(CCOMP) -c $(OPT) oblicz_PI.c $(INC)
-
-run:
-	$(MPIRUN) -np 4 --oversubscribe  ./oblicz_PI
+# jak uzyskac plik moj_program.o ?
+oblicz_PI.o: oblicz_PI.c
+	$(CCOMP) -c $(OPT) oblicz_PI.c
 
 clean:
-	rm -f *.o ./oblicz_PI
+	rm -f *.o oblicz_PI
